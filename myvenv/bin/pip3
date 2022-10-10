@@ -1,4 +1,4 @@
-#!/Users/sihwan/Desktop/job/nochart/myvenv/bin/python
+#!/Users/sihwan/Desktop/job/nochart/myvenv/bin/python3
 # -*- coding: utf-8 -*-
 import re
 import sys

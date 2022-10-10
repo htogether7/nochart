@@ -1,0 +1,31 @@
+{% load static %}
+<!doctype html>
+<html lang="ko">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" type="text/css" href="{% static 'bootstrap.min.css' %}">
+    <!-- pybo CSS -->
+    <link rel="stylesheet" type="text/css" href="{% static '/style.css' %}">
+    <title>노차트 - 차트 없이 보는 주식</title>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+        <div>
+            <a href="{% url 'index'%}">노차트</a>
+            {% if user.is_authenticated %}
+                <a href="{% url 'common:logout' %}">{{user.username}}(로그아웃)</a>
+            {% else %}
+                <a href="{% url 'common:login' %}">로그인</a>
+                <a href="{% url 'common:signup'%}">회원가입</a>
+            {% endif %}
+            
+        </div>
+
+    </nav>
+    {% block content %}
+    {% endblock %}
+</body>
+</html>
