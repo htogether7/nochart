@@ -12,8 +12,8 @@ def signup(request):
             username = form.cleaned_data.get('username')
             raw_password = form.cleaned_data.get('password')
             user = authenticate(username=username, passsword=raw_password)
-            login(request, user)
-            return redirect('index')
+            # login(request, user)
+            return redirect('stock_list:index')
     else:
         form = UserForm()
     return render(request, 'common/signup.html', {'form':form})
