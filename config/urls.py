@@ -20,5 +20,6 @@ from stock_list import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('common/', include('common.urls')),
-    path('', views.index, name='index'),
+    # path('', views.index, name='index'),
+    path('', include('stock_list.urls')),
 ]

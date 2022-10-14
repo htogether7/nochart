@@ -1,4 +1,10 @@
 {% extends "base.html" %}
 {% block content %}
-    <div>내 주식</div>
+    <ul>
+    {% for stock in stock_list%}
+        <li>{{stock.name}}</li>
+        
+    {% endfor %}
+    
+    </ul>
 {% endblock %}
