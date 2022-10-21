@@ -1,10 +1,18 @@
 {% extends "base.html" %}
 {% block content %}
+
+    <h2>내 주식</h2>    
     <ul>
-    {% for stock in stock_list%}
-        <li>{{stock.name}}</li>
+    {% for stock in my_stock%}
+        <li>{{stock.symbol}}</li>
         
     {% endfor %}
-    
+    </ul>
+    <h2>추천 주식</h2>    
+    <ul>
+    {% for stock in entire_stock%}
+        <li>{{stock.symbol}}</li>
+        
+    {% endfor %}
     </ul>
 {% endblock %}

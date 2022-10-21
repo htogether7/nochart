@@ -122,6 +122,18 @@ class DjangoSession(models.Model):
         db_table = 'django_session'
 
 
+class Newstbl(models.Model):
+    article_id = models.IntegerField(primary_key=True)
+    corp = models.CharField(max_length=7)
+    title = models.CharField(max_length=120)
+    author = models.CharField(max_length=50)
+    link = models.CharField(max_length=512)
+
+    class Meta:
+        managed = False
+        db_table = 'newstbl'
+
+
 class Stocktbl(models.Model):
     symbol = models.TextField(db_column='Symbol', blank=True, null=True)  # Field name made lowercase.
     name = models.TextField(db_column='Name', blank=True, null=True)  # Field name made lowercase.
@@ -132,3 +144,12 @@ class Stocktbl(models.Model):
     class Meta:
         managed = False
         db_table = 'stocktbl'
+
+
+class Mystock(models.Model):
+    username = models.CharField(max_length=15)
+    symbol = models.CharField(max_length=7)
+
+    class Meta:
+        managed = False
+        db_table = 'mystock'
