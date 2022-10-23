@@ -3,16 +3,16 @@
 
     <h2>내 주식</h2>    
     <ul>
-    {% for stock in my_stock%}
-        <li>{{stock.symbol}}</li>
-        
-    {% endfor %}
+    {% if not my_stock %}
+        <li>등록된 주식이 없습니다.</li>
+    {% else %}
+        {% for stock in my_stock%}
+            <li>{{stock.symbol}}</li>
+        {% endfor %}
+    {% endif %}
     </ul>
     <h2>추천 주식</h2>    
     <ul>
-    {% for stock in entire_stock%}
-        <li>{{stock.symbol}}</li>
         
-    {% endfor %}
     </ul>
 {% endblock %}

@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+<!-- <p>상세 페이지</p> -->
+{% for info in corp_info%}
+    <p style="font-size:24px">{{info.name}}</p>
+    <p>{{info.symbol}}  {{info.industry}}</p>
+{% endfor %}
+    {% if not news_list%}
+        <p>뉴스가 없습니다</p>
+    {% else %}
+        <ul>
+        {% for news in news_list%}
+            <li><a href={{news.link}}>{{news.title}}</a></li>
+        {% endfor %}
+        </ul>
+    {% endif %}
+{% endblock %}

@@ -21,5 +21,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('common/', include('common.urls')),
     # path('', views.index, name='index'),
-    path('', include('stock_list.urls')),
+    path('stock/', include('stock_list.urls')),
 ]
