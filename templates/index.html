@@ -4,7 +4,11 @@
     <h2>내 주식</h2>    
     <ul>
     {% if not my_stock %}
+        {% if not user.is_authenticated %}
+        <li>로그인하고 주식을 등록하세요</li>
+        {% else %}
         <li>등록된 주식이 없습니다.</li>
+        {% endif %}
     {% else %}
         {% for stock in my_stock%}
             <li><a href="{% url 'stock_list:news' corpname=stock.symbol%}">{{stock.symbol}}</a>   <a href="{% url 'stock_list:delete_stock' corpname=stock.symbol%}">삭제</a></li>

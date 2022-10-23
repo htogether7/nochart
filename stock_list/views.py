@@ -12,10 +12,9 @@ def getStockData(request):
     my_stock = Mystock.objects.filter(username=request.user)
     my_stock_serializer = MyStockSerializer(my_stock, many=True)
     # print(my_stock_serializer.data)
-    entire_stock = Stocktbl.objects.all()
-    entire_stock_serializer = StockDataSerializer(entire_stock, many=True)
+    
     # print(entire_stock_serializer.data)
-    context = {'entire_stock' : entire_stock_serializer.data, 'my_stock' : my_stock_serializer.data}
+    context = {'my_stock' : my_stock_serializer.data}
     return render(request, 'index.html', context)
 
 @api_view(['GET'])
@@ -37,6 +36,21 @@ def deleteStock(request, corpname):
     deleted_stock = Mystock.objects.filter(symbol=corpname) & Mystock.objects.filter(username=request.user)
     deleted_stock.delete()
     return redirect('stock_list:index')
+
+def searchStock(request):
+    stock_name = request.GET['stock_name']
+    # print(stock_name.upper)
+    entire_stock = Stocktbl.objects.all()
+    entire_stock_serializer = StockDataSerializer(entire_stock, many=True)
+    for data in entire_stock_serializer.data:
+        if data['symbol'] == stock_name.upper():
+            return redirect('stock_list:news', corpname=stock_name)
+    # print(entire_stock_serializer.data[0]['symbol'])
+    if stock_name:
+        return render(request, 'stock_list/stock_not_exist.html')
+    else:
+        return render(request, 'index.html')
+
 # def index(request):
 #     stock_list = Stocktbl.objects.order_by('id')
 #     context = {'stock_list': stock_list}
