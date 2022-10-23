@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import Stocktbl, Mystock, Newstbl
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
@@ -29,10 +29,14 @@ def getStockNews(request, corpname):
     # news = Newstbl.objects.all()
     news_serializer = NewsSerializer(news, many=True)
     context = {'news_list' : news_serializer.data, 'corp_info': corp_info_serializer.data}
-    print(corp_info_serializer.data)
+    # print(corp_info_serializer.data)
     return render(request, 'stock_list/stock_news.html', context)
 
 
+def deleteStock(request, corpname):
+    deleted_stock = Mystock.objects.filter(symbol=corpname) & Mystock.objects.filter(username=request.user)
+    deleted_stock.delete()
+    return redirect('stock_list:index')
 # def index(request):
 #     stock_list = Stocktbl.objects.order_by('id')
 #     context = {'stock_list': stock_list}

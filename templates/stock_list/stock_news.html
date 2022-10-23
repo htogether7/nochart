@@ -2,7 +2,7 @@
 {% block content %}
 <!-- <p>상세 페이지</p> -->
 {% for info in corp_info%}
-    <p style="font-size:24px">{{info.name}}</p>
+    <div style="font-size:24px">{{info.name}}</div>
     <p>{{info.symbol}}  {{info.industry}}</p>
 {% endfor %}
     {% if not news_list%}
