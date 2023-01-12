@@ -3,6 +3,7 @@ from .models import Stocktbl, Mystock, Newstbl
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from .serializers import StockDataSerializer, MyStockSerializer, NewsSerializer
+from django.db import connection
 
 # Create your views here.
 
@@ -11,9 +12,6 @@ def getStockData(request):
     
     my_stock = Mystock.objects.filter(username=request.user)
     my_stock_serializer = MyStockSerializer(my_stock, many=True)
-    # print(my_stock_serializer.data)
-    
-    # print(entire_stock_serializer.data)
     context = {'my_stock' : my_stock_serializer.data}
     return render(request, 'index.html', context)
 
@@ -62,10 +60,5 @@ def addStock(request, corpname):
     if request.user.is_authenticated:
         new_stock = Mystock(username=request.user, symbol=corpname)
         new_stock.save()
-    # print(request.user)
     return redirect('stock_list:news', corpname=corpname)
 
-# def index(request):
-#     stock_list = Stocktbl.objects.order_by('id')
-#     context = {'stock_list': stock_list}
-#     return render(request, 'index.html', context)
