@@ -2,7 +2,7 @@
 
 ## 전체구조
 
-![Architecture](.img/architecture.jpg)
+![A](.img/architecture.jpg)
 
 ## 화면
 ### 홈 화면
